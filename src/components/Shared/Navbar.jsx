@@ -48,6 +48,13 @@ const Navbar = () => {
                                     </button>
                                 </li> */}
 
+                                <Link to='/media'>
+                                    <button className='my-1 btn btn-sm btn-primary'>Media</button>
+                                </Link>
+                                <Link to='/about'>
+                                    <button className='my-1 btn btn-sm btn-primary'>About </button>
+                                </Link>
+
 
                                 {
                                     user.email ? <li>
@@ -80,9 +87,11 @@ const Navbar = () => {
                         </Link>
                         <div className='hidden lg:flex items-center'>
 
-
-                            <Link to='/pc-builder'>
-                                <button className='my-1 btn btn-sm btn-primary'>About </button>
+                            <Link to='/media'>
+                                <button className='my-1 mx-1 btn btn-sm btn-primary'>Media</button>
+                            </Link>
+                            <Link to='/about'>
+                                <button className='my-1 mx-1 btn btn-sm btn-primary'>About </button>
                             </Link>
 
 
