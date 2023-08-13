@@ -1,10 +1,13 @@
+import { RouterProvider } from "react-router-dom";
+
+import routes from "./routes/routes";
 
 
 const App = () => {
   return (
-    <div>
-      <button className="bg-red-500 text-center hover:bg-green-400">hello</button>
-    </div>
+    <>
+      <RouterProvider router={routes} />
+    </>
   );
 };
 
