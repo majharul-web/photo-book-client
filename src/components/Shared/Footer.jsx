@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className='footer footer-center p-10 bg-red-100 text-base-content rounded'>
+    <footer className='footer footer-center p-10 bg-blue-100 text-base-content rounded'>
       <div className='grid grid-flow-col gap-4'>
         <a className='link link-hover hover:text-error'>About us</a>
         <a className='link link-hover hover:text-error'>Contact</a>
@@ -10,7 +10,7 @@ const Footer = () => {
         <a className='link link-hover hover:text-error'>Press kit</a>
       </div>
       <div>
-        <div className='grid grid-flow-col gap-4 text-error'>
+        <div className='grid grid-flow-col gap-4 text-blue-500'>
           <a>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -48,12 +48,12 @@ const Footer = () => {
       </div>
       <div>
 
-        <p>Photo Book</p>
+        <Link to='/' className="text-xl font-bold text-blue-500">Photo Book</Link>
 
       </div>
       <div>
         <p>
-          Copyright © 2023 - All right reserved by <span className='text-error font-bold'>Photo Book</span>{" "}
+          Copyright © 2023 - All right reserved by <span className='text-blue-500 font-bold'>Photo Book</span>{" "}
           Ltd
         </p>
       </div>
