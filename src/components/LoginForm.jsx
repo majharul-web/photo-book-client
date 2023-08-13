@@ -4,7 +4,7 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { setUser } from "../redux/features/auth/authSlice";
+import { googleLogin, setUser } from "../redux/features/auth/authSlice";
 
 
 const LoginForm = () => {
@@ -34,7 +34,7 @@ const LoginForm = () => {
             localStorage.setItem(
                 "user",
                 JSON.stringify({
-                    accessToken: data.data.accessToken,
+
                     user: { email },
                 })
             );
@@ -52,8 +52,8 @@ const LoginForm = () => {
         }
     }, [data, isSuccess, isLoading, error, navigate, reset, dispatch]);
 
-    const handleGoogleLogin = (data) => {
-        console.log(data)
+    const handleGoogleLogin = () => {
+        dispatch(googleLogin(navigate))
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">

@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBA6gMqZmmxGIzL7OYRQpytvRkXkjGmUgc",
-  authDomain: "next-auth-394105.firebaseapp.com",
-  projectId: "next-auth-394105",
-  storageBucket: "next-auth-394105.appspot.com",
-  messagingSenderId: "739700553283",
-  appId: "1:739700553283:web:c26523245d0e1b180246f6",
+  apiKey: "AIzaSyCE3YBbnBKX0xHenK8Px7ai31cj73Dkk3U",
+  authDomain: "photo-book-d5634.firebaseapp.com",
+  projectId: "photo-book-d5634",
+  storageBucket: "photo-book-d5634.appspot.com",
+  messagingSenderId: "1044636279291",
+  appId: "1:1044636279291:web:f70f60ef86dcaaed372b5e",
 };
 
 // Initialize Firebase
