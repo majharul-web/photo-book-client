@@ -1,8 +1,20 @@
 
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom'
+import { logOut } from '../../redux/features/auth/authSlice';
 const Navbar = () => {
 
-    const signOut = () => { }
+    const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const user = auth?.user;
+
+    const signOut = () => {
+        dispatch(
+            logOut()
+        )
+    }
 
     return (
         <div className='flex justify-center items-center bg-base-300'>
@@ -37,17 +49,21 @@ const Navbar = () => {
                                 </li> */}
 
 
-                                <li>
-                                    <button onClick={() => signOut()} className='my-1 btn btn-sm btn-outline btn-primary'>
-                                        Logout
-                                    </button>
-                                </li>
+                                {
+                                    user.email ? <li>
+                                        <button onClick={() => signOut()} className='my-1 btn btn-sm btn-outline btn-primary'>
+                                            Logout
+                                        </button>
+                                    </li> :
+                                        <li>
+                                            <Link to='/login'>
+                                                <button className='mx-1 btn btn-sm btn-outline btn-primary'>Login</button>
+                                            </Link>
+                                        </li>
 
-                                <li>
-                                    <Link to='/login'>
-                                        <button className='mx-1 btn btn-sm btn-outline btn-primary'>Login</button>
-                                    </Link>
-                                </li>
+                                }
+
+
 
 
 
@@ -70,13 +86,16 @@ const Navbar = () => {
                             </Link>
 
 
-                            <button onClick={() => signOut()} className='mx-1 btn btn-sm btn-outline btn-primary'>
-                                Logout
-                            </button>
+                            {
+                                user.email ? <button onClick={() => signOut()} className='mx-1 btn btn-sm btn-outline btn-primary'>
+                                    Logout
+                                </button> : <Link to='/login'>
+                                    <button className='mx-1 btn btn-sm btn-outline btn-primary'>Login</button>
+                                </Link>
+                            }
 
-                            <Link to='/login'>
-                                <button className='mx-1 btn btn-sm btn-outline btn-primary'>Login</button>
-                            </Link>
+
+
 
                         </div>
                     </div>

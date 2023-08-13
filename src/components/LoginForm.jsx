@@ -1,4 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/features/auth/authSlice";
 
 
 const LoginForm = () => {
@@ -7,12 +13,44 @@ const LoginForm = () => {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm()
 
 
+    const [login, { data, isLoading, isSuccess, error }] = useLoginMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
     const onSubmit = (data) => {
-        console.log(data)
-    }
+        login({ email: data.email, password: data.password });
+    };
+
+    useEffect(() => {
+        if (!isLoading && !error && isSuccess && data.statusCode === 200) {
+
+            console.log("data", data)
+            const { email } = data.data;
+            localStorage.setItem(
+                "user",
+                JSON.stringify({
+                    accessToken: data.data.accessToken,
+                    user: { email },
+                })
+            );
+
+            dispatch(
+                setUser({
+                    user: { email },
+                })
+            );
+            toast.success("User logged in successfully");
+            reset();
+            navigate("/");
+        } else if (!isLoading && error) {
+            toast.error(error.data.message);
+        }
+    }, [data, isSuccess, isLoading, error, navigate, reset, dispatch]);
 
     const handleGoogleLogin = (data) => {
         console.log(data)

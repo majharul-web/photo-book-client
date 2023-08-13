@@ -1,4 +1,8 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useSignupMutation } from "../redux/features/auth/authApi";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 
 const RegisterForm = () => {
@@ -7,12 +11,40 @@ const RegisterForm = () => {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm()
 
 
+
+    const [signup, { data, isLoading, isSuccess, error }] = useSignupMutation();
+
+    const navigate = useNavigate();
+
+
     const onSubmit = (data) => {
-        console.log(data)
-    }
+
+        const { fName, lName, ...userData } = data;
+
+
+        signup({
+            ...userData, name: {
+                firstName: fName,
+                lastName: lName,
+            }
+        });
+    };
+
+    useEffect(() => {
+        if (!isLoading && !error && isSuccess && data.statusCode === 200) {
+            toast.success("Sign up successful");
+            reset();
+            navigate("/login");
+        } else if (!isLoading && error) {
+            toast.error(error.data.message);
+        }
+    }, [data, isSuccess, isLoading, error, navigate, reset]);
+
+
 
     const handleGoogleLogin = (data) => {
         console.log(data)
