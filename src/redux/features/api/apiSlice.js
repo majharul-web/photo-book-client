@@ -7,6 +7,6 @@ import { BASE_URL } from "../../../utils/CONSTANT";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}` }),
-  tagTypes: [],
+  tagTypes: ["about"],
   endpoints: (builder) => ({}),
 });

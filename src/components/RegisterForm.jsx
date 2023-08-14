@@ -35,6 +35,8 @@ const RegisterForm = () => {
     };
 
     useEffect(() => {
+
+
         if (!isLoading && !error && isSuccess && data.statusCode === 200) {
             toast.success("Sign up successful");
             reset();
@@ -142,6 +144,10 @@ const RegisterForm = () => {
                     className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-1"
                 >
                     Register
+
+                    {
+                        isLoading && <span className="loading loading-dots loading-sm text-white ms-2"></span>
+                    }
                 </button>
             </div>
             <div className="flex flex-col space-y-5">
