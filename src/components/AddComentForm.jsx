@@ -18,15 +18,23 @@ const AddComentForm = ({ postId }) => {
     } = useForm()
     const [addComment, { data, isLoading, isSuccess, error }] = useAddCommentMutation();
 
-    const onSubmit = (data) => {
+    const onSubmit = (payload) => {
 
         if (!auth?.user?.email) {
             toast.error("Please login to comment post");
             return;
         }
-        data.email = auth?.user?.email;
 
-        addComment({ id: postId, data })
+        const data = {
+            comment: payload.comment,
+            email: auth?.user?.email || "",
+        }
+
+
+
+        addComment({
+            id: postId, data: data
+        })
     };
 
     useEffect(() => {

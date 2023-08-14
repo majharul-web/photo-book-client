@@ -85,8 +85,12 @@ const PostDetails = () => {
                                             <RxAvatar size={20} />
                                         </span>
 
+                                        <span className="text-green-600">
+                                            {review.email}
+                                        </span>
+
                                     </div>
-                                    <p className='italic'>{review.comment}</p>
+                                    <p className='italic text-yellow-500'>{review.comment}</p>
                                 </div>
                             ))}
                         </div>

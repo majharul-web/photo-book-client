@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import Loading from "./Shared/Loading";
 import { useGetPostsQuery } from "../redux/features/post/postApi";
 import PostCard from "./PostCard";
 import noDataImg from "../assets/no-data.gif";
@@ -11,19 +11,28 @@ const TopPost = () => {
 
     const allPosts = data?.data;
 
+    let content = null;
+    if (isLoading) content = <div className="h-screen flex justify-center items-center">
+        <Loading />
+    </div>;
 
+    if (!isLoading && error) content = <div className="h-screen flex justify-center items-center">
+        <h1 className="text-error">Error Occured
+        </h1></div>;
 
-    // const topBooks = useMemo(() => {
+    if (!isLoading && !error && allPosts.length === 0) {
+        content = <div className="flex justify-center items-center">
+            <img src={noDataImg} alt="No Dta found" style={{ width: '300px' }} />
+        </div>
+    }
 
-    //     if (allPosts.length > 0) {
-    //         const computedUsers = allPosts.sort((a, b) => a.like - b.like);
-    //         return computedUsers.slice(0, 3);
-    //     }
-    //     return [];
-
-    // }, [allPosts]);
-
-    // console.log("topBooks", topBooks)
+    if (!isLoading && !error && allPosts.length > 0) {
+        content = <section className='w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10 '>
+            {allPosts.slice().sort((a, b) => b.like - a.like).slice(0, 3).map((post) => (
+                <PostCard key={post.id} post={post} />
+            ))}
+        </section>
+    }
 
 
     return (
@@ -34,23 +43,15 @@ const TopPost = () => {
                     <span className="block text-indigo-600 xl:inline"> Post</span>
                 </h3>
 
-                {!isLoading && !error && allPosts.length > 0 ? (
-                    <section className='w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10 '>
-                        {allPosts?.map((post) => (
-                            <PostCard key={post.id} post={post} />
-                        ))}
-                    </section>
-                ) : (
-                    <div className="flex justify-center items-center">
-                        <img src={noDataImg} alt="No Dta found" style={{ width: '300px' }} />
-                    </div>
-                )}
+                {
+                    content
+                }
 
 
             </div>
 
 
-        </section>
+        </section >
     );
 };
 
