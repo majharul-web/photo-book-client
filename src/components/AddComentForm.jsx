@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const AddComentForm = ({ postId }) => {
 
-    console.log("postId", postId)
+
     const auth = useSelector((state) => state.auth);
     const {
         register,

@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import About from "../pages/About";
 import Media from "../pages/Media";
 import PostDetails from "../pages/PostDetails";
+import NotFound from "../pages/NotFound";
 
 const routes = createBrowserRouter([
   {
@@ -37,14 +38,12 @@ const routes = createBrowserRouter([
         path: "/post/:id",
         element: <PostDetails />,
       },
-      // {
-      //   path: "/register",
-      //   element: (
-      //     <PrivateRoute>
-      //       <AccountCreator />
-      //     </PrivateRoute>
-      //   ),
-      // },
+
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+
     ],
   },
 ]);

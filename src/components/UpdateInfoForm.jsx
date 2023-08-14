@@ -8,7 +8,7 @@ import { useEditAboutMutation } from "../redux/features/about/aboutApi";
 
 const UpdateInfoForm = ({ info, setOpen }) => {
 
-    console.log("info", info)
+
 
     const {
         register,

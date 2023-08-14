@@ -1,13 +1,11 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { logOut } from '../../redux/features/auth/authSlice';
+import { RxAvatar } from "react-icons/rx"
 const Navbar = () => {
-
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
     const user = auth?.user;
 
     const signOut = () => {
@@ -42,11 +40,7 @@ const Navbar = () => {
                                 tabIndex={0}
                                 className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
                             >
-                                {/* <li>
-                                    <button onClick={() => router.push("/pc-builder")} className='my-1 btn btn-sm btn-primary'>
-                                        PC Builder{" "}
-                                    </button>
-                                </li> */}
+
 
                                 <Link to='/media'>
                                     <button className='my-1 btn btn-sm btn-primary'>Media</button>
@@ -72,19 +66,28 @@ const Navbar = () => {
 
 
 
-
-
                             </ul>
                         </div>
                         <Link className='hidden lg:flex' to='/'>
                             <h3 className='text-blue-500 text-2xl font-bold '>Photo Book</h3>
                         </Link>
+
                     </div>
 
                     <div className='navbar-end'>
                         <Link className='lg:hidden' to='/'>
                             <h3 className='text-blue-500 text-xl font-bold'>Photo Book</h3>
                         </Link>
+
+                        <div className='ms-2 lg:hidden'>
+                            {
+                                user.email && <div className="tooltip tooltip-bottom" data-tip={user.email}>
+                                    <button className="btn btn-sm">
+                                        <RxAvatar size={20} />
+                                    </button>
+                                </div>
+                            }
+                        </div>
                         <div className='hidden lg:flex items-center'>
 
                             <Link to='/media'>
@@ -103,7 +106,13 @@ const Navbar = () => {
                                 </Link>
                             }
 
-
+                            {
+                                user.email && <div className="tooltip tooltip-bottom" data-tip={user.email}>
+                                    <button className="btn btn-sm">
+                                        <RxAvatar size={20} />
+                                    </button>
+                                </div>
+                            }
 
 
                         </div>

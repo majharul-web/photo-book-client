@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useGetPostsQuery } from "../redux/features/post/postApi";
 import PostCard from "./PostCard";
+import noDataImg from "../assets/no-data.gif";
 
 
 const TopPost = () => {
@@ -10,7 +11,7 @@ const TopPost = () => {
 
     const allPosts = data?.data;
 
-    console.log("allPosts", allPosts)
+
 
     // const topBooks = useMemo(() => {
 
@@ -33,18 +34,22 @@ const TopPost = () => {
                     <span className="block text-indigo-600 xl:inline"> Post</span>
                 </h3>
 
-                {allPosts ? (
+                {!isLoading && !error && allPosts.length > 0 ? (
                     <section className='w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10 '>
                         {allPosts?.map((post) => (
                             <PostCard key={post.id} post={post} />
                         ))}
                     </section>
                 ) : (
-                    <div>
-                        {/* <Image src={noDataImg} alt='Not Found' width={500} height={500} /> */}
+                    <div className="flex justify-center items-center">
+                        <img src={noDataImg} alt="No Dta found" style={{ width: '300px' }} />
                     </div>
                 )}
+
+
             </div>
+
+
         </section>
     );
 };

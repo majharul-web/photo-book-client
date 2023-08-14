@@ -29,7 +29,7 @@ const LoginForm = () => {
     useEffect(() => {
         if (!isLoading && !error && isSuccess && data.statusCode === 200) {
 
-            console.log("data", data)
+
             const { email } = data.data;
             localStorage.setItem(
                 "user",

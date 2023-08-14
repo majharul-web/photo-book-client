@@ -1,5 +1,6 @@
 import PostCard from "../components/PostCard";
 import { useGetPostsQuery } from "../redux/features/post/postApi";
+import noDataImg from "../assets/no-data.gif";
 
 
 const Media = () => {
@@ -8,6 +9,8 @@ const Media = () => {
     });
 
     const allPosts = data?.data;
+
+
     return (
         <div className="container">
             <section className="px-2 py-16 bg-white md:px-0">
@@ -17,15 +20,15 @@ const Media = () => {
                         <span className="block text-indigo-600 xl:inline"> Post</span>
                     </h3>
 
-                    {allPosts ? (
+                    {!isLoading && !error && allPosts.length > 0 ? (
                         <section className='w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 my-10 '>
                             {allPosts?.map((post) => (
                                 <PostCard key={post.id} post={post} />
                             ))}
                         </section>
                     ) : (
-                        <div>
-                            {/* <Image src={noDataImg} alt='Not Found' width={500} height={500} /> */}
+                        <div className="flex justify-center items-center">
+                            <img src={noDataImg} alt="No Dta found" style={{ width: '300px' }} />
                         </div>
                     )}
                 </div>

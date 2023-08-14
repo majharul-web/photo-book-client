@@ -11,7 +11,7 @@ const PostCard = ({ post }) => {
     const [addLike, { data, isLoading, isSuccess, error }] = useAddLikeMutation();
 
     const handleLike = () => {
-        console.log({ like: 1, id: post?._id })
+
         addLike(post?._id)
     }
 
