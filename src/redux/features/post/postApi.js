@@ -34,6 +34,14 @@ export const postApi = apiSlice.injectEndpoints({
       invalidatesTags: ["singlePost"],
     }),
 
+    addLike: builder.mutation({
+      query: (id) => ({
+        url: `posts/like/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["singlePost", "posts"],
+    }),
+
     singlePost: builder.query({
       query: (id) => `/posts/${id}`,
       providesTags: ["singlePost"],
@@ -53,4 +61,5 @@ export const {
   useAddCommentMutation,
   useDeletePostMutation,
   useEditPostMutation,
+  useAddLikeMutation,
 } = postApi;

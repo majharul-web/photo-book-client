@@ -43,11 +43,6 @@ const AddPostForm = () => {
         }
     }, [data, isSuccess, isLoading, error, navigate, reset]);
 
-
-
-
-
-
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
 
